@@ -1,9 +1,15 @@
-// let total = 0;
-// let buffer = "0";
+let total = 0;
+let buffer = "0";
+let previousOperatorl;
 
-// const screen = document.getElementById("screen");
+const screen = document.getElementById("screen");
 
-// function button() {}
+function buttonClick(value) {}
 
-// function init() {}
-// init();
+function init() {
+  document.querySelector(".calc-button");
+  addEventListener("click", function (event) {
+    buttonClick(event.target.innerText);
+  });
+}
+init();
