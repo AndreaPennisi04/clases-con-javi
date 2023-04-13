@@ -1,6 +1,8 @@
 // let edad = 40;
 // edad = 41 ; let permite que el nombre de la variable (edad)se pueda cambiar su valor por ejemplo para sumar anos
 
+const { EmojiObjectsOutlined } = require("@mui/icons-material");
+
 /*Se puede declarar una variable sin darle ningun valor
 let ciudad; 
 luego puedo llamarla y darle un valor
@@ -274,3 +276,33 @@ let peso = (peso, altura, masaCorporal) =>{
 }
 console.log(peso(70, 1.70, 250))
 */
+
+/* Validaciones. Asi se validarian datos
+const validacionEntradas = () => {
+  if (isNaN(altura) || isNaN(peso)) {
+    return false;
+  }
+  if (altura <= 0 || peso <= 0) {
+    return false;
+  }
+  return true;
+
+  Es importante validar datos para ver que todos los parametros pasen y en caso que falte uno me salete un alert
+  */
+
+/*OBJETOS
+
+Los objetos se escriben entre []. El orden q se va a mostrar por consola es en orden alfabetico.
+Ahora, si quiero especificar un dato de ese objeto y concatenarlo con uno de los objetos deberia hacer: 
+console.log("El color de la lapicera es: "+lapicera.color) y esto me mostraria el color de la lapicera. el (.) punto
+es la forma en la que puedo llegar a la propiedad. lapicera es el nombre de la variable u objeto literal y la propiedad o atributo es "color".
+
+Hay tres formas de objetos
+1. Objetos Literales: que no son atravez de un molde 
+2. Funcion constructora que sí son atravez de un molde
+3. Clases donde si son atravez de un molde y podemos tener metodos 
+
+*/
+
+/*ARRAY
+ */
