@@ -37,7 +37,7 @@
 // //eliminar el ultimo
 // nombres.splice(-1); //elimina el ultimo
 
-// //JOIN sirve solo para reemplazar por ejemplo la, por el pipe |
+// //JOIN sirve solo para reemplazar por ejemplo la , por el pipe |
 // nombres.join("|");
 // console.log(nombres);
 
