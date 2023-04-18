@@ -1,33 +1,12 @@
-const mix = [
-  "andrea",
-  "Pancho",
-  "Diego",
-  "Mateo",
-  ["Argentina", "Escocia"],
-  ["Netflix", "Disney", "Amazon", "Now", ["Sailor Moon", "Los simposon", "Dark", [1992, 1986, 2018]], false, true],
-];
-console.log(mix);
+//Crea un script en JS que le solicite al usuario ingresar mínimo 1 dato y luego, mediante JavaScript, realiza operaciones sobre los mismos.
 
-//Para llamar a un elemento dentro del array
-const seriesFav = [
-  "Sailor Mon",
-  "Dark",
-  "Behaind her eyes",
-  { cast: ["Serena", "Daryen", "Amy", "Rei", "Lita", "SailorVenus"] },
-];
-console.log(seriesFav[0]);
-console.log(seriesFav[3].cast[1]); /*en este caso como estoy llamando a un elemento que es un objeto (cast)dentro del 
-array tengo que primero llamar la posicion de ese elemento dentro del array [3] y una vez que llama a ese elemento
-colocar el nombre del objeto (cast) y lugo llamar el numero del array que esta dentro de ese objeto [1]*/
+const name = prompt("Ingrese nombre");
+let lastName = prompt("Ingrese apellido");
+alert(`Welcome ${name} ${lastName}`);
 
-//Para saber la longitud del array usamos length
-console.log(seriesFav.length);
+let year = prompt("Ingrese edad");
+let retirement = prompt("Ingrese edad en la que le gustaria jubilarse");
 
-//Forma correcta de un bucle for
-for (let i = 0; i < seriesFav.length; i++) {
-  console.log(seriesFav[i]);
-}
-
-// Reasignar un valor
-seriesFav[3].cast[5] = "Mina";
-console.log(seriesFav[3].cast[5]);
+let favoritePlace = prompt("Ingrese su lugar favorito donde quiera vivir luego de que se jubile");
+let calc = year - retirement;
+alert(" A usted le quedan " + calc + " años para jubilarse y vivir en " + favoritePlace);
