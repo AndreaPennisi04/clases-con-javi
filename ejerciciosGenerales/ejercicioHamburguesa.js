@@ -1,5 +1,3 @@
-const { Diversity1 } = require("@mui/icons-material");
-
 const productos = [
   {
     id: 1,
