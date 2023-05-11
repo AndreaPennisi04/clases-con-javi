@@ -20,10 +20,12 @@ console.log(lapicera);
 /*Constructores: el constructor de un objeto es una funcion q usamos para crear un nuevo objeto
 cada vez q sea necesario. Lo que se haria es crear un modle como el siguiente*/
 //constructor de un molde para un objeto tipo
-function Persona(nombre, edad, direccion) {
-  this.nombre = nombre;
-  this.edad = edad;
-  this.direccion = direccion;
+class Persona {
+  constructor(nombre, edad, direccion) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.direccion = direccion;
+  }
 } // esto es el molde
 
 const pers1 = new Persona("Andrea", 41, "3 kirk place"); //al molde persona se le agregan los datos
