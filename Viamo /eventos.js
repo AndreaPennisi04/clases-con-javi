@@ -6,6 +6,7 @@ const productos = [
       "Riñonera de cuero sintético liso con detalle de tachas metálicas, cierre y correa regulable con hebilla. Altura: 15cm - Largo: 36cm - Ancho: 9cm.",
     precio: 14840,
     imagen: "https://viamo.vtexassets.com/arquivos/ids/269225-1200-auto?width=1200&height=auto&aspect=true",
+    stock: 5,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const productos = [
       "Bandolera de cuero sintético liso con detalle de correa de hombro regulable estampada y cierre metálico. Altura: 14,5cm - Largo: 21cm - Ancho: 8,5cm.",
     precio: 16660,
     imagen: "https://viamo.vtexassets.com/arquivos/ids/269233-1200-auto?width=1200&height=auto&aspect=true",
+    stock: 10,
   },
   {
     id: 4,
@@ -30,6 +32,7 @@ const productos = [
       "Bandolera de cuero sintético graneado combinado con gamuza con detalle de tira de mano, correa de hombro regulable estampada y cierre metálico. Altura: 16cm - Largo: 22cm - Ancho: 9cm.",
     precio: 19320,
     imagen: "https://viamo.vtexassets.com/arquivos/ids/269228-1200-auto?width=1200&height=auto&aspect=true",
+    stock: 3,
   },
   {
     id: 5,
@@ -38,6 +41,7 @@ const productos = [
       "Mochila de textil con detalle de bolsillos laterales y cintas frontales a tono. Altura: 36cm - Largo: 26cm - Ancho: 11,5cm.",
     precio: 20440,
     imagen: "https://viamo.vtexassets.com/arquivos/ids/269248-1200-auto?width=1200&height=auto&aspect=true",
+    stock: 7,
   },
   {
     id: 6,
@@ -46,37 +50,77 @@ const productos = [
       "Mochila de textil con detalle de bolsillos laterales y cintas frontales a tono. Altura: 36cm - Largo: 26cm - Ancho: 11,5cm.",
     precio: 20.44,
     imagen: "https://viamo.vtexassets.com/arquivos/ids/269249-1200-auto?width=1200&height=auto&aspect=true",
+    stock: 0,
   },
 ];
 
-for (const producto of productos) {
-  let carteras = document.createElement("div");
-  carteras.className = "col-md-4";
+//Esto guarda los productos en el local storage (LS)
+const guardarProductosLS = (productos) => {
+  // Guardar un array de Productos
+  localStorage.setItem("productos", JSON.stringify(productos));
+};
+const cargarProductsLS = () => {
+  //Cargar un array de Productos
+  return JSON.parse(localStorage.getItem("productos")) || [];
+};
 
-  let titulo = document.createElement("h3");
-  titulo.innerHTML = producto.titulo;
+const guardarCarritoLS = (productos) => {
+  //Guardar un Array de prodcutos seleccionados
+  localStorage.setItem("carrito", JSON.stringify(productos));
+};
 
-  let imagenes = document.createElement("img");
-  imagenes.src = producto.imagen;
-  imagenes.alt = producto.titulo;
-  imagenes.className = "img-fluid";
+const guardarProductoCarrito = (producto) => {
+  //Gurada un producto seleccionado al carrito
+  const carrito = cargarCarritoLS();
+  carrito.push(producto);
+  guardarCarritoLS(carrito);
+};
 
-  let precio = document.createElement("p");
-  precio.innerHTML = "$" + producto.precio;
+const cargarCarritoLS = () => {
+  return JSON.parse(localStorage.getItem("carrito")) || [];
+};
 
-  let boton = document.createElement("button");
-  boton.innerHTML = "agregar";
-  boton.onclick = () => agregarProducto(producto.id);
+//Guardar un objeto producto
+const guardarUnProductoLS = (producto) => {
+  const productos = buscarProducts(id);
+  localStorage.setItem("producto", JSON.stringify(productos));
+};
 
-  carteras.append(titulo);
-  carteras.append(imagenes);
-  carteras.append(precio);
-  carteras.append(boton);
+//Carga un objeto Producto
+const cargarProductoLS = () => {
+  return JSON.parse(localStorage.getItem("producto")) || [];
+};
 
-  document.getElementById("contenido").append(carteras);
-}
+const buscarProducts = (id) => {
+  const productos = cargarProductsLS();
+  return productos.find((item) => item.id === id);
+};
+const actualizarBotonCarrito = () => {
+  const carrito = cargarCarritoLS(); // array de productos seleccionados
+  let total = carrito.reduce((acumular, item) => (acumular += item.cantidad), 0);
+  document.getElementById("productosCarrito").innerHTML = total;
+};
 
-function agregarProducto(id) {
-  let buscar = productos.find((item) => item.id === id);
-  console.log(buscar);
-}
+const existInCart = (id) => {
+  const carrito = cargarCarritoLS();
+
+  return carrito.some((item) => item.id === id);
+};
+
+const agregarProductoAlCarrito = (id) => {
+  const carrito = cargarCarritoLS(id);
+  if (existInCart(id)) {
+    let pos = carrito.findIndex((item) => item.id === id);
+    carrito[pos].cantidad = +1;
+  } else {
+    const producto = buscarProducts(id);
+    producto.cantidad = 1;
+    guardarCarritoLS(carrito);
+  }
+
+  guardarProductoCarrito(productos);
+  actualizarBotonCarrito();
+};
+
+guardarProductosLS(productos);
+actualizarBotonCarrito();
